@@ -1,0 +1,32 @@
+.header{
+    width: 100%;
+    height: 91px;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.header img{
+    height: 61px;
+}
+
+.header nav {
+    width: 80%;
+    display: flex;
+
+}
+.header nav ul{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    list-style: none;
+}

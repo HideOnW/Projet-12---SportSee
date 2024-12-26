@@ -1,0 +1,21 @@
+.divBorder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: black;
+    height: 933px;
+    width: 117px;
+    color: white;
+    padding: 110px 10px;
+}
+
+.divBorder p{
+    transform: rotate(-90deg);
+    margin-top: 300px;
+    text-wrap: none;
+}
+
+.divBorder img{
+    width: 64px;
+}

@@ -1,0 +1,47 @@
+.divInfo{
+    margin: 90px 0px 0px 90px;
+    width: 100%;
+}
+
+.divInfo h1{
+    margin: 0;
+    font-size: 48px;
+}
+
+.allData{
+    width: 90%;
+    display: flex;
+    margin-top: 100px;
+}
+
+.leftData{
+    width: 70%;
+    margin-right: 5%;
+}
+
+.rightData{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+    width: 18%;
+}
+
+.keyData{
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    background-color: #FBFBFB;
+    border-radius: 5px;
+}
+
+.keyData img{
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.keyData div h3, .keyData div p{
+    margin: 0px
+}
+
