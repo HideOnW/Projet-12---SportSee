@@ -44,4 +44,7 @@
 .keyData div h3, .keyData div p{
     margin: 0px
 }
-
+*
+.bottomData{
+    display: flex;
+}

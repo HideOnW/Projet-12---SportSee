@@ -4,10 +4,11 @@ import './home.css'
 import Banner from '../../composants/banner/banner'
 import Border from '../../composants/border/border'
 import Info from '../../composants/info/info'
+import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom'
+
 
 function Home() {
-
-    console.log(datas)
 
     return (
         <>

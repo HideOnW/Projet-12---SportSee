@@ -1,56 +1,32 @@
 import React from 'react';
-import { Radar, RadarChart as RechartsRadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import { Radar, RadarChart, PolarGrid, 
+	PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+  import { USER_PERFORMANCE } from "../../data/data";
 
-const data = [
-  {
-    subject: 'Math',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Chinese',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'English',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Geography',
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: 'Physics',
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: 'History',
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
 
 const Radarchart = () => {
-  return (
-    <ResponsiveContainer width="100%" height="100%">
-      <RechartsRadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-        <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis />
-        <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-      </RechartsRadarChart>
-    </ResponsiveContainer>
-  );
-};
+
+	// Sample data
+	  const userPerformance = USER_PERFORMANCE.find(
+		(performance) => performance.userId === 12
+	  );
+	
+	
+	  const performanceData = userPerformance.data.map(item => ({
+		value: item.value,
+		kind: userPerformance.kind[item.kind], // e.g., 1 → "cardio"
+	  }));
+  
+  console.log(performanceData);
+
+	return (
+		<RadarChart margin={100} height={258} width={300} outerRadius="70%" data={performanceData} >
+			<PolarGrid />
+			<PolarAngleAxis dataKey="kind"/>
+			<PolarRadiusAxis />
+			<Radar dataKey="value" fill="#FF0101B2" fillOpacity={0.5}/>
+		</RadarChart>
+	);
+}
 
 export default Radarchart;

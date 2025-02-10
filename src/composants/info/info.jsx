@@ -7,16 +7,45 @@ import glucides from '../../asset/carbs-icon.png'
 import fat from '../../asset/fat-icon.png'
 import Barchart from '../charts/barchart'
 import Radarchart from "../charts/radarchart";
+import Linechart from "../charts/linechart";
+import Piechart from "../charts/piechart"
+import { useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+
+// const response = await fetch("https://github.com/OpenClassrooms-Student-Center/SportSee/blob/master/app/data.js");
+  
+fetch("http://localhost:3000/user/12");
+
 
 
 function Info(user){
 
+    
+    const [id, setId] = useState(12);
+    console.log(id)
     const mainData = datas.USER_MAIN_DATA
-    const actualUser = mainData.find((element) => element.id === 12)
-    console.log(mainData)
+    const actualUser = mainData.find((element) => element.id === id)
 
     return (
-        <>
+        <>    <div>
+        <input
+          type="radio"
+          name="id"
+          value={12}
+          checked={id === 12}
+          onChange={() => setId(12)}
+        /> ID: 12
+        
+        <input
+          type="radio"
+          name="id"
+          value={18}
+          checked={id === 18}
+          onChange={() => setId(18)}
+        /> ID: 18
+  
+        <p>Current ID: {id}</p>
+      </div>
             <div className="divInfo">
                 <h1> Bonjour {actualUser.userInfos.firstName}</h1>
                 <p> Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
@@ -24,12 +53,13 @@ function Info(user){
                 <div className="allData">
                     <div className="leftData">
                         <div>
-                            <h2>Diagramme du haut</h2>
+                            <h2>Activité quotidienne</h2>
                             <Barchart />
                         </div>
-                        <div>
-                            <h2>Diagramme à 3</h2>
+                        <div className="bottomData">
+                            <Linechart />
                             <Radarchart />
+                            <Piechart />
                         </div>
 
                     </div>
