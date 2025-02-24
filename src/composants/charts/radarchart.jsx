@@ -16,6 +16,15 @@ const Radarchart = () => {
 		value: item.value,
 		kind: userPerformance.kind[item.kind], // e.g., 1 → "cardio"
 	  }));
+
+	//   const [data, setData] = useState(null);
+	  
+	// 	  useEffect(() => {
+	// 		  fetch("http://localhost:3001/user/18/performance")
+	// 			.then((response) => response.json())
+	// 			.then((json) => setData(json.data))  // <-- store only the 'data' property
+	// 			.catch((error) => console.error(error));
+	// 		}, []);
   
   console.log(performanceData);
 

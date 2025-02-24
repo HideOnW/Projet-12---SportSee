@@ -3,11 +3,20 @@ import { RadialBarChart, RadialBar, PieChart, Pie, Cell} from 'recharts';
  
 const Piechart = () => {
 
-    const percentage = 20; // Constant 20% filled
+    const percentage = 50; // Constant 20% filled
     const data = [
     { name: "Filled", value: percentage },
     { name: "Remaining", value: 100 - percentage }
   ];
+
+  // const [data, setData] = useState(null);
+  
+  //     useEffect(() => {
+  //         fetch("http://localhost:3001/user/18")
+  //           .then((response) => response.json())
+  //           .then((json) => setData(json.data))  // <-- store only the 'data' property
+  //           .catch((error) => console.error(error));
+  //       }, []);
 
   const COLORS = ["#0088FE", "#E0E0E0"]; 
     return (
