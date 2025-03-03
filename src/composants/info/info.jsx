@@ -22,7 +22,6 @@ function Info(user){
 
     
     const [id, setId] = useState(12);
-    console.log(id)
     const mainData = datas.USER_MAIN_DATA
     const actualUser = mainData.find((element) => element.id === id)
 

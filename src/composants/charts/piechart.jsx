@@ -1,28 +1,39 @@
 import React from 'react';
 import { RadialBarChart, RadialBar, PieChart, Pie, Cell} from 'recharts';
+import { useEffect, useState } from 'react';
+
  
 const Piechart = () => {
 
-    const percentage = 50; // Constant 20% filled
-    const data = [
-    { name: "Filled", value: percentage },
-    { name: "Remaining", value: 100 - percentage }
-  ];
-
-  // const [data, setData] = useState(null);
+   const [data, setData] = useState(null);
   
-  //     useEffect(() => {
-  //         fetch("http://localhost:3001/user/18")
-  //           .then((response) => response.json())
-  //           .then((json) => setData(json.data))  // <-- store only the 'data' property
-  //           .catch((error) => console.error(error));
-  //       }, []);
+      useEffect(() => {
+          fetch("http://localhost:3001/user/12")
+            .then((response) => response.json())
+            .then((json)=>setData(json.data.todayScore))
+            .catch((error) => console.error(error));
+        }, []);
+
+   
+
+  if(!data){
+    return (
+      <p>Loading...</p>
+    )
+  }
+
+  const percentage = data * 100; // Constant 20% filled
+  const dataFill = [
+  { name: "Filled", value: percentage },
+  { name: "Remaining", value: 100 - percentage }
+];
+
 
   const COLORS = ["#0088FE", "#E0E0E0"]; 
     return (
         <PieChart width={200} height={200}>
       <Pie 
-        data={data} 
+        data={dataFill} 
         cx="50%" 
         cy="50%" 
         innerRadius={60} 
@@ -31,7 +42,7 @@ const Piechart = () => {
         endAngle={-270} 
         dataKey="value"
       >
-        {data.map((entry, index) => (
+        {dataFill.map((entry, index) => (
           <Cell key={index} fill={COLORS[index]} />
         ))}
       </Pie>

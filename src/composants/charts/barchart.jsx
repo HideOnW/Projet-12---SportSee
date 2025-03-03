@@ -21,9 +21,10 @@ const Barchart = () => {
     useEffect(() => {
         fetch("http://localhost:3001/user/12/activity")
           .then((response) => response.json())
-          .then((json) => setData(json.data))  // <-- store only the 'data' property
+          .then((json) => {setData(json.data); console.log(json.data)})  // <-- store only the 'data' property
           .catch((error) => console.error(error));
       }, []);
+
       
         // const userActivity = USER_ACTIVITY.find((activity) => activity.userId === 12);
         return (
