@@ -23,23 +23,24 @@ const Piechart = () => {
   }
 
   const percentage = data * 100; // Constant 20% filled
-  const dataFill = [
-  { name: "Filled", value: percentage },
-  { name: "Remaining", value: 100 - percentage }
+  const dataFill = [    
+  { name: "Remaining", value: 100 - percentage },
+  { name: "Filled", value: percentage }
 ];
 
 
-  const COLORS = ["#0088FE", "#E0E0E0"]; 
+  const COLORS = [ "#FFFFFF", "#0088FE"]; 
     return (
         <PieChart width={200} height={200}>
       <Pie 
         data={dataFill} 
         cx="50%" 
         cy="50%" 
-        innerRadius={60} 
+        innerRadius={65} 
         outerRadius={80} 
         startAngle={90} 
         endAngle={-270} 
+        cornerRadius={20}
         dataKey="value"
       >
         {dataFill.map((entry, index) => (

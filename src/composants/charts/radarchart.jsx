@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip } from 'recharts';
 
 const Radarchart = () => {
   const [userPerformance, setUserPerformance] = useState(null);
@@ -34,8 +34,8 @@ console.log(performanceData)
       data={performanceData}
     >
       <PolarGrid />
-      <PolarAngleAxis dataKey="kind" />
-      <PolarRadiusAxis />
+      <PolarAngleAxis dataKey="kind"  />
+      <PolarRadiusAxis tick={false} axisLine={false}/>
       <Radar dataKey="value" fill="#FF0101B2" fillOpacity={0.5} />
     </RadarChart>
   );
