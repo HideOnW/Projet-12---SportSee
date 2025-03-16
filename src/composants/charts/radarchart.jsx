@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip } from 'recharts';
+import { fetchUserActivity, fetchUserPerformance } from "../../services/api"; 
+import { useParams } from "react-router-dom";
 
 const Radarchart = () => {
   const [userPerformance, setUserPerformance] = useState(null);
+  const {id} = useParams();
  
-  useEffect(() => {
-    fetch('http://localhost:3001/user/12/performance')
-      .then((res) => res.json())
-      .then((json) => {
-      
-        setUserPerformance(json.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+   useEffect(() => {
+     fetchUserPerformance(id)
+       .then((data) => {
+         setUserPerformance(data);
+         console.log(data); 
+       })
+       .catch((error) => console.error(error));
+   }, []);
 
 
   if (!userPerformance) {

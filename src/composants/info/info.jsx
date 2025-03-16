@@ -16,7 +16,9 @@ import { useEffect, useState } from 'react';
   
 fetch("http://localhost:3000/user/12");
 
-
+function urlChange(newId){
+    window.location.replace = `http://localhost:3000/user/${newId}`
+}
 
 function Info(user){
 
@@ -33,6 +35,7 @@ function Info(user){
           value={12}
           checked={id === 12}
           onChange={() => setId(12)}
+          onclick={() => urlChange(12)}
         /> ID: 12
         
         <input
@@ -41,6 +44,8 @@ function Info(user){
           value={18}
           checked={id === 18}
           onChange={() => setId(18)}
+          onclick={() => urlChange(18)}
+
         /> ID: 18
   
         <p>Current ID: {id}</p>

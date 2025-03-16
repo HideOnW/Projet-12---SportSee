@@ -9,22 +9,36 @@ import {
   Legend
 } from "recharts";
 import { useEffect, useState } from 'react';
-import { USER_AVERAGE_SESSIONS } from "../../data/data";
+import { fetchUserSession } from "../../services/api"; 
+import { useParams } from "react-router-dom";
 
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${payload[0].value}`+ "min"}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 function Linechart() {
-
-    // const userSession = USER_AVERAGE_SESSIONS.find((sessions) => sessions.userId === 12);
-  
   
     const [data, setData] = useState(null);
+    const {id} = useParams();
   
       useEffect(() => {
-          fetch("http://localhost:3001/user/12/average-sessions")
-            .then((response) => response.json())
-            .then((json) => setData(json.data))  // <-- store only the 'data' property
+          fetchUserSession(id)
+            .then((data) => {
+              setData(data);
+              console.log(data); 
+            })
             .catch((error) => console.error(error));
         }, []);
+      
 
         if (!data) {
           return <p>Loading...</p>;
@@ -51,17 +65,30 @@ function Linechart() {
       data={averageData}
       margin={{
         top: 5,
-        right: 30,
-        left: 0,
+        right: 20,
+        left: 10,
         bottom: 5
       }}
+      backgroundColor="red"
     >
       <CartesianGrid strokeDasharray="0 3" fill="red"/>
-      <XAxis dataKey="day" tickSize={0}/>
-      <YAxis dataKey="sessionLength"/>
-      <Tooltip content="sessionLength" />
+      <XAxis dataKey="day" tickSize={0} />
+      <YAxis dataKey="sessionLength" orientation='right'hide padding={{bottom : 25}}  domain={['dataMin + 0', 'dataMax + 50']} />
       <Legend />
-      <Line name="sessionLength" type="monotone" dataKey="sessionLength" stroke="white" strokeWidth={1} dot={false} />
+      <Line type="natural" dataKey="sessionLength" stroke="white" strokeWidth={2} dot={false} />
+      <Tooltip content={<CustomTooltip />}/>
+      <text 
+        x="10%" 
+        y="20%" 
+        dy={4} 
+        textAnchor="start" 
+        fontSize={12} 
+        fill="#FFFFFF"
+        fillOpacity="0.5"
+      >
+        {"Durée moyenne des sessions"}
+      </text>
+
       
     </LineChart>
   ));

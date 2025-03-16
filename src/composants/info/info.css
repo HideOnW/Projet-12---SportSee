@@ -48,3 +48,14 @@
 .bottomData{
     display: flex;
 }
+
+.custom-tooltip{
+    background-color: white; 
+}
+
+.custom-tooltip .label{
+    padding : 7px; 
+    font-size : 11px;
+    height: 600
+}
+

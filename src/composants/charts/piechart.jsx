@@ -1,18 +1,22 @@
 import React from 'react';
 import { RadialBarChart, RadialBar, PieChart, Pie, Cell} from 'recharts';
 import { useEffect, useState } from 'react';
+import { fetchUserMain } from "../../services/api"; 
+import { useParams } from "react-router-dom";
 
  
 const Piechart = () => {
 
    const [data, setData] = useState(null);
   
-      useEffect(() => {
-          fetch("http://localhost:3001/user/12")
-            .then((response) => response.json())
-            .then((json)=>setData(json.data.todayScore))
-            .catch((error) => console.error(error));
-        }, []);
+   const {id} = useParams();
+  
+  
+   useEffect(() => {
+      fetchUserMain(id)
+        .then((data) => setData(data.todayScore))
+              .catch((error) => console.error(error));
+          }, []);
 
    
 
@@ -29,7 +33,7 @@ const Piechart = () => {
 ];
 
 
-  const COLORS = [ "#FFFFFF", "#0088FE"]; 
+  const COLORS = [ "#FFFFFF", "#FF0000"]; 
     return (
         <PieChart width={200} height={200}>
       <Pie 
